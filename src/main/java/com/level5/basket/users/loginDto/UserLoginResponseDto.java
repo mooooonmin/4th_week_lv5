@@ -2,9 +2,9 @@ package com.level5.basket.users.loginDto;
 
 import com.level5.basket.enumType.GenderTypeEnum;
 import com.level5.basket.enumType.UserRoleEnum;
+import com.level5.basket.users.User;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.security.core.userdetails.User;
 
 @Getter
 @ToString
