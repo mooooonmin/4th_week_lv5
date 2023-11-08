@@ -6,16 +6,14 @@ import com.level5.basket.users.joinDto.UserJoinRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     @Column(unique = true)
@@ -34,8 +32,9 @@ public class User {
     private String address;
 
     @Builder
-    public User(String email, String password, UserRoleEnum role,
-                GenderTypeEnum gender, String phoneNum, String address) {
+    public User(String email, String password,
+                UserRoleEnum role, GenderTypeEnum gender,
+                String phoneNum, String address) {
         this.email = email;
         this.password = password;
         this.role = role;
@@ -48,7 +47,7 @@ public class User {
         return User.builder()
                 .email(requestDto.getEmail())
                 .password(requestDto.getPassword())
-                .role(UserRoleEnum.USER)
+                .role(UserRoleEnum.USER) // 기본값
                 .gender(requestDto.getGender())
                 .phoneNum(requestDto.getPhoneNum())
                 .address(requestDto.getAddress())
