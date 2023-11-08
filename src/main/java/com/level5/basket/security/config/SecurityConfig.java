@@ -64,8 +64,7 @@ public class SecurityConfig {
                         // swagger 관련 링크 허용
                         .requestMatchers("/swagger-resources/**", "/webjars/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         // 회원가입, 로그인 경로 허용
-                        .requestMatchers("/api/users/join").permitAll()
-                        .requestMatchers("/api/users/login").permitAll()
+                        .requestMatchers("/api/users/join", "/api/users/login").permitAll()
                         // 그 외 모든 요청 인증 처리
                         .anyRequest().authenticated());
 
