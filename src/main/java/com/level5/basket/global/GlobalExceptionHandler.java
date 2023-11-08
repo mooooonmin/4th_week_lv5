@@ -13,6 +13,8 @@ import java.util.NoSuchElementException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    // TODO 중복 예외처리 정리하기
+
     // IllegalArgumentException 잘못된 입력
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException e) {

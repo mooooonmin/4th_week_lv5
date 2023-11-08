@@ -2,8 +2,6 @@ package com.level5.basket.users;
 
 import com.level5.basket.users.joinDto.UserJoinRequestDto;
 import com.level5.basket.users.joinDto.UserJoinResponseDto;
-import com.level5.basket.users.loginDto.UserLoginRequestDto;
-import com.level5.basket.users.loginDto.UserLoginResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +23,4 @@ public class UserController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<UserLoginResponseDto> login(@Valid @RequestBody UserLoginRequestDto requestDto) {
-        UserLoginResponseDto responseDto = userService.login(requestDto);
-        return ResponseEntity.ok(responseDto);
-    }
 }

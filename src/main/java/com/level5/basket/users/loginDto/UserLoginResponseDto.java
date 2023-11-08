@@ -1,3 +1,4 @@
+/*
 package com.level5.basket.users.loginDto;
 
 import com.level5.basket.enumType.GenderTypeEnum;
@@ -25,4 +26,4 @@ public class UserLoginResponseDto {
         this.message = message;
         this.token = token;
     }
-}
+}*/

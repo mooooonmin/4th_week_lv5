@@ -7,7 +7,6 @@ import com.level5.basket.jwt.JwtUtil;
 import com.level5.basket.users.joinDto.UserJoinRequestDto;
 import com.level5.basket.users.joinDto.UserJoinResponseDto;
 import com.level5.basket.users.loginDto.UserLoginRequestDto;
-import com.level5.basket.users.loginDto.UserLoginResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -68,9 +67,8 @@ public class UserService {
     }
 
     // 로그인
-    // 이메일 입력받아서 -> 사용자 조회 -> 비밀번호 검증 -> jwt 토큰 생성 -> 응답 반환
     @Transactional
-    public UserLoginResponseDto login(UserLoginRequestDto requestDto) {
+    public void login(UserLoginRequestDto requestDto) {
 
         // 사용자 조회
         User user = userRepository.findByEmail(requestDto.getEmail())
@@ -78,19 +76,17 @@ public class UserService {
 
         // 비밀번호 검증
         if (!passwordEncoder.matches(requestDto.getPassword(), user.getPassword())) {
-
             log.error("비밀번호 불일치: {}", requestDto.getEmail());
-
             throw new CustomException.InvalidPasswordException();
         }
 
-        log.info("이메일에 맞는 비밀번호 확인: {}", requestDto.getEmail());
+        // Spring Security 필터에서 인증 처리를 하므로 성공 로그만 남음
+        log.info("로그인 성공: {}", requestDto.getEmail());
 
-        // 토큰 생성
+        // 여기에서 토큰을 생성할 수도 있음(로그를 남기기 위해), 또는 필터 체인에서 더 사용되는 경우
+        // 하지만 반환하지는 않음
         String token = jwtUtil.createToken(user.getEmail(), user.getRole());
-        log.info("사용자를 위한 토큰생성: {}", requestDto.getEmail());
+        log.info("사용자를 위한 토큰생성: {}", token);
 
-        // 응답 객체 생성 및 반환
-        return new UserLoginResponseDto(user, "로그인 성공", token);
     }
 }
