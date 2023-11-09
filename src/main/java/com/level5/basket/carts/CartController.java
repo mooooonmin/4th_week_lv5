@@ -1,6 +1,5 @@
 package com.level5.basket.carts;
 
-import com.level5.basket.users.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;

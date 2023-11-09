@@ -62,21 +62,21 @@ public class SwaggerConfig {
                                 )));
     }
 
-    // 회원가입, 로그인 관련 컨트롤러
+    // 로그인 컨트롤러
     @Bean
     public GroupedOpenApi userApi() {
         return GroupedOpenApi.builder()
                 .group("custom-auth")
-                .pathsToMatch("/api/users/**")
+                .pathsToMatch("/api/users/login")
                 .build();
     }
 
-    // 상품 관련 컨트롤러
+    // 회원가입 컨트롤러
     @Bean
-    public GroupedOpenApi productApi() {
+    public GroupedOpenApi registrationApi() {
         return GroupedOpenApi.builder()
-                .group("products")
-                .pathsToMatch("/api/product/**")
+                .group("custom-regis")
+                .pathsToMatch("/api/users/join") // 회원가입 API 경로 지정
                 .build();
     }
 
@@ -86,6 +86,15 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder()
                 .group("carts")
                 .pathsToMatch("/api/carts/**")
+                .build();
+    }
+
+    // 상품 관련 컨트롤러
+    @Bean
+    public GroupedOpenApi productApi() {
+        return GroupedOpenApi.builder()
+                .group("products")
+                .pathsToMatch("/api/product/**")
                 .build();
     }
 

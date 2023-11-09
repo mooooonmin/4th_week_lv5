@@ -29,7 +29,7 @@ public class CartService {
                 .orElseThrow(() -> new CustomException(ErrorMessage.DATA_NOT_FOUND.getMessage()));
 
         // 장바구나에서 유저정보 찾기 -> 없으면 새로운 장바구니 만들어주기
-        Cart cart = cartRepository.findByUserId(userId)
+        Cart cart = cartRepository.findByUserUserId(userId)
                 .orElseGet(() -> {Cart newCart = new Cart();
                     newCart.setUser(user);
                     return newCart;
@@ -48,7 +48,7 @@ public class CartService {
     // 장바구니 조회
     @Transactional(readOnly = true)
     public CartResponseDto getCart(Long userId) {
-        Cart cart = cartRepository.findByUserId(userId)
+        Cart cart = cartRepository.findByUserUserId(userId)
                 .orElseThrow(NoSuchElementException::new);
         return new CartResponseDto(cart);
     }
@@ -56,7 +56,7 @@ public class CartService {
     // 장바구니 제거
     @Transactional
     public void removeItemFromCart(Long userId, Long productId) {
-        Cart cart = cartRepository.findByUserId(userId)
+        Cart cart = cartRepository.findByUserUserId(userId)
                 .orElseThrow(NoSuchElementException::new);
 
         cart.removeItem(productId);
@@ -70,7 +70,7 @@ public class CartService {
             throw new IllegalArgumentException("상품의 수량은 1개 이상만 가능합니다");
         }
 
-        Cart cart = cartRepository.findByUserId(userId)
+        Cart cart = cartRepository.findByUserUserId(userId)
                 .orElseThrow(() -> new CustomException(ErrorMessage.DATA_NOT_FOUND.getMessage()));
 
         CartItem itemToUpdate = cart.getItems().stream()

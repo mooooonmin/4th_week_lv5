@@ -4,6 +4,7 @@ import com.level5.basket.users.joinDto.UserJoinRequestDto;
 import com.level5.basket.users.joinDto.UserJoinResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
