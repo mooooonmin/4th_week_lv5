@@ -29,4 +29,15 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> items = new ArrayList<>();
 
+    // 장바구니 상품 추가
+    public void addItem(CartItem item) {
+        this.items.add(item);
+        item.setCart(this);
+    }
+
+    // 장바구니 상품 제거
+    public void removeItem(Long productId) {
+        items.removeIf(item -> item.getProduct().getProductId().equals(productId));
+    }
+
 }

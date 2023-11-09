@@ -22,6 +22,8 @@ public class CustomException extends RuntimeException {
         }
     }
 
+    // 데이터 없음
+
     // 비밀번호 불일치
     public static class InvalidPasswordException extends CustomException {
         public InvalidPasswordException() {
@@ -69,4 +71,6 @@ public class CustomException extends RuntimeException {
             super(ErrorMessage.FORBIDDEN.getMessage());
         }
     }
+
+
 }
