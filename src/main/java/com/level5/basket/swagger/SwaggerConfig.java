@@ -64,7 +64,7 @@ public class SwaggerConfig {
 
     // 회원가입, 로그인 관련 컨트롤러
     @Bean
-    public GroupedOpenApi groupedOpenApi() {
+    public GroupedOpenApi userApi() {
         return GroupedOpenApi.builder()
                 .group("custom-auth")
                 .pathsToMatch("/api/users/**")
@@ -77,6 +77,15 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder()
                 .group("products")
                 .pathsToMatch("/api/product/**")
+                .build();
+    }
+
+    // 장바구니 관련 컨트롤러
+    @Bean
+    public GroupedOpenApi cartApi() {
+        return GroupedOpenApi.builder()
+                .group("carts")
+                .pathsToMatch("/api/carts/**")
                 .build();
     }
 
