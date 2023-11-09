@@ -1,4 +1,4 @@
-package com.level5.basket.exception;
+package com.level5.basket.global;
 
 public class CustomException extends RuntimeException {
     public CustomException(String message) {

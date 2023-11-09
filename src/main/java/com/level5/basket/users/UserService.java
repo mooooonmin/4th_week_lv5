@@ -1,8 +1,8 @@
 package com.level5.basket.users;
 
 import com.level5.basket.enumType.UserRoleEnum;
-import com.level5.basket.exception.CustomException;
-import com.level5.basket.exception.ErrorMessage;
+import com.level5.basket.global.CustomException;
+import com.level5.basket.global.ErrorMessage;
 import com.level5.basket.jwt.JwtUtil;
 import com.level5.basket.users.joinDto.UserJoinRequestDto;
 import com.level5.basket.users.joinDto.UserJoinResponseDto;

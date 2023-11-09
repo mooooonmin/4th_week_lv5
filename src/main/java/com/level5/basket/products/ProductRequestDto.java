@@ -1,11 +1,11 @@
 package com.level5.basket.products;
 
 import com.level5.basket.enumType.CategoryTypeEnum;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-@Getter
-@Setter
+@Getter @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,10 +14,10 @@ public class ProductRequestDto {
     @NotBlank(message = "내용을 입력해주세요")
     private String productName;
 
-    @NotBlank(message = "내용을 입력해주세요")
+    @Min(100)
     private int price;
 
-    @NotBlank(message = "내용을 입력해주세요")
+    @Min(1)
     private int quantity;
 
     private String productInfo;

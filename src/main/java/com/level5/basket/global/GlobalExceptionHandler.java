@@ -1,4 +1,4 @@
-package com.level5.basket.exception;
+package com.level5.basket.global;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

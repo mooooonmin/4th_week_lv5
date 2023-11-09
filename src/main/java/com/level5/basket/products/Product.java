@@ -4,7 +4,8 @@ import com.level5.basket.enumType.CategoryTypeEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -22,7 +23,7 @@ public class Product {
     private int price;
 
     @Column(nullable = false)
-    private int quantity;
+    private int quantity; // 상품의 수
 
     private String productInfo;
 
@@ -30,11 +31,13 @@ public class Product {
     private CategoryTypeEnum category;
 
     @Builder
-    public Product(String productName,
+    public Product(Long productId,
+                   String productName,
                    int price,
                    int quantity,
                    String productInfo,
                    CategoryTypeEnum category) {
+        this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;

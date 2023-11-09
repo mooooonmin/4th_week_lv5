@@ -1,5 +1,6 @@
 package com.level5.basket.users;
 
+import com.level5.basket.carts.Cart;
 import com.level5.basket.enumType.GenderTypeEnum;
 import com.level5.basket.enumType.UserRoleEnum;
 import com.level5.basket.users.joinDto.UserJoinRequestDto;
@@ -31,6 +32,9 @@ public class User {
     private String phoneNum;
 
     private String address;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Cart cart;
 
     @Builder
     public User(String email, String password,

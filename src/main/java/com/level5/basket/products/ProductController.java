@@ -24,9 +24,9 @@ public class ProductController {
     }
 
     // 상품 단일 조회
-    @GetMapping("/{productName}")
-    public ResponseEntity<ProductResponseDto> getProductByProductName(@PathVariable String productName) {
-        ProductResponseDto product = productService.getProductByProductName(productName);
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductResponseDto> getProductById(@PathVariable Long productId) {
+        ProductResponseDto product = productService.getProductById(productId);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
@@ -43,13 +43,13 @@ public class ProductController {
     }
 
 
-    // 선택 강의 수정
+    // 선택 상품 수정
     @Secured("ROLE_ADMIN")
-    @PutMapping("/{productName}")
-    public ResponseEntity<?> updateProduct(@PathVariable String productName,
+    @PutMapping("/{productId}")
+    public ResponseEntity<?> updateProduct(@PathVariable Long productId,
                                           @RequestBody ProductRequestDto requestDto) {
         try {
-            productService.updateProduct(productName, requestDto);
+            productService.updateProduct(productId, requestDto);
             return ResponseEntity.ok("상품 정보가 수정되었습니다");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("상품 정보 수정에 실패했습니다");
@@ -58,10 +58,10 @@ public class ProductController {
 
     // 선택 상품 삭제
     @Secured("ROLE_ADMIN")
-    @DeleteMapping("/{productName}")
-    public ResponseEntity<?> deleteProduct(@PathVariable String productName) {
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
         try {
-            productService.deleteProduct(productName);
+            productService.deleteProduct(productId);
             return ResponseEntity.ok().body("상품 정보 삭제에 성공했습니다");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("상품 정보 삭제에 실패했습니다");

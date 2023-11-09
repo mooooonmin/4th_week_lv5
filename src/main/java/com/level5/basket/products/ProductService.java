@@ -1,7 +1,7 @@
 package com.level5.basket.products;
 
-import com.level5.basket.exception.CustomException;
-import com.level5.basket.exception.ErrorMessage;
+import com.level5.basket.global.CustomException;
+import com.level5.basket.global.ErrorMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,15 +22,9 @@ public class ProductService {
     // 상품 등록
     @Transactional
     public ProductResponseDto createProduct(ProductRequestDto requestDto) {
-
-        String message;
-
-        // 상품 중복 확인
-        String productName = requestDto.getProductName();
+        // 상품 이름으로 중복 확인
         if (productRepository.existsByProductName(requestDto.getProductName())) {
             throw new CustomException(ErrorMessage.ALREADY_EXISTS.getMessage());
-        } else {
-            message = "상품이 등록 되었습니다";
         }
 
         // 상품 등록
@@ -46,15 +40,14 @@ public class ProductService {
         productRepository.save(product);
 
         // 반환
-        return new ProductResponseDto(product, message);
-
+        return new ProductResponseDto(product, "상품이 등록 되었습니다");
     }
 
     // 상품 조회
     @Transactional(readOnly = true)
-    public ProductResponseDto getProductByProductName(String productName) {
+    public ProductResponseDto getProductById(Long productId) {
         // 상품이름으로 조회 -> 있나 확인
-        Product product = productRepository.findByProductName(productName)
+        Product product = productRepository.findById(productId)
                 .orElseThrow(CustomException.ProductNotFoundException::new);
         ProductResponseDto responseDto = new ProductResponseDto(product, "상품 조회 완료");
 
@@ -89,9 +82,9 @@ public class ProductService {
 
     // 상품 수정
     @Transactional
-    public void updateProduct(String productName, ProductRequestDto requestDto) {
+    public void updateProduct(Long productId, ProductRequestDto requestDto) {
         // 상품이름으로 조회 -> 있나 확인
-        Product product = productRepository.findByProductName(productName)
+        Product product = productRepository.findById(productId)
                 .orElseThrow(CustomException.ProductNotFoundException::new);
 
         // 있으면 수정해서 반환
@@ -100,9 +93,9 @@ public class ProductService {
 
     // 상품 삭제
     @Transactional
-    public void deleteProduct(String productName) {
+    public void deleteProduct(Long productId) {
         // 상품이름으로 조회 -> 있나 확인
-        Product product = productRepository.findByProductName(productName)
+        Product product = productRepository.findById(productId)
                 .orElseThrow(CustomException.ProductNotFoundException::new);
 
         // 있으면 삭제
