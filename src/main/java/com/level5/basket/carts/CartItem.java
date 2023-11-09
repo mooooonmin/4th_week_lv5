@@ -32,4 +32,9 @@ public class CartItem {
     @Column(nullable = false)
     private int itemQuantity; // 장바구니 속의 아이템 수량
 
+    public CartItem(Cart cart, Product product, int itemQuantity) {
+        this.cart = cart;
+        this.product = product;
+        this.itemQuantity = itemQuantity;
+    }
 }

@@ -22,17 +22,24 @@ public class CartService {
 
     // 장바구니 추가
     @Transactional
-    public void addItemToCart(Long userId, CartItemRequestDto cartItemRequest)
-    {
+    public void addItemToCart(Long userId, CartItemRequestDto cartItemRequest) {
+
+        // 유저 검색 -> 없으면 예외처리
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException(ErrorMessage.DATA_NOT_FOUND.getMessage()));
 
-        Cart cart = cartRepository.findByUserId(cartId)
-                .orElseGet(() -> new CustomException(ErrorMessage.DATA_NOT_FOUND.getMessage()));
+        // 장바구나에서 유저정보 찾기 -> 없으면 새로운 장바구니 만들어주기
+        Cart cart = cartRepository.findByUserId(userId)
+                .orElseGet(() -> {Cart newCart = new Cart();
+                    newCart.setUser(user);
+                    return newCart;
+                });
 
+        // 상품 찾기 -> 없으면 애러
         Product product = productRepository.findById(cartItemRequest.getProductId())
                 .orElseThrow(() -> new CustomException(ErrorMessage.DATA_NOT_FOUND.getMessage()));
 
+        // 상품 넣기
         cart.addItem(new CartItem(cart, product, cartItemRequest.getItemQuantity()));
 
         cartRepository.save(cart);

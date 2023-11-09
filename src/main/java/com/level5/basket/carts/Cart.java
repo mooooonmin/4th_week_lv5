@@ -31,7 +31,7 @@ public class Cart {
 
     // 장바구니 상품 추가
     public void addItem(CartItem item) {
-        this.items.add(item);
+        items.add(item);
         item.setCart(this);
     }
 
