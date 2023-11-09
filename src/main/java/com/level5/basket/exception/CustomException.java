@@ -1,14 +1,24 @@
-package com.level5.basket.global;
+package com.level5.basket.exception;
 
 public class CustomException extends RuntimeException {
     public CustomException(String message) {
         super(message);
     }
 
+
+    // TODO 예외처리 중복코드 정리하기
+
     // 사용자 없음
     public static class UserNotFoundException extends CustomException {
         public UserNotFoundException() {
             super(ErrorMessage.USER_NOT_FOUND.getMessage());
+        }
+    }
+
+    // 상품 없음
+    public static class ProductNotFoundException extends CustomException {
+        public ProductNotFoundException() {
+            super(ErrorMessage.DATA_NOT_FOUND.getMessage());
         }
     }
 

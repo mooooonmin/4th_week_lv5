@@ -11,7 +11,8 @@ import lombok.*;
 @Table(name = "products")
 public class Product {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
     @Column(unique = true)
@@ -49,5 +50,13 @@ public class Product {
                 .productInfo(requestDto.getProductInfo())
                 .category(requestDto.getCategory())
                 .build();
+    }
+
+    public void update(ProductRequestDto requestDto) {
+        this.productName = requestDto.getProductName();
+        this.price = requestDto.getPrice();
+        this.quantity = requestDto.getQuantity();
+        this.productInfo = requestDto.getProductInfo();
+        this.category = requestDto.getCategory();
     }
 }

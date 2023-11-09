@@ -2,7 +2,7 @@ package com.level5.basket.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.level5.basket.enumType.UserRoleEnum;
-import com.level5.basket.global.CustomException;
+import com.level5.basket.exception.CustomException;
 import com.level5.basket.security.UserDetailsImpl;
 import com.level5.basket.users.loginDto.UserLoginRequestDto;
 import jakarta.servlet.FilterChain;

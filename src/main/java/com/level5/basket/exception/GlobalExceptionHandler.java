@@ -1,4 +1,4 @@
-package com.level5.basket.global;
+package com.level5.basket.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +41,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status)
                 .body(new ErrorResponse(errorMessage.getMessage(), status));
     }
+
 
     // InvalidPasswordException 비밀번호 불일치
     @ExceptionHandler(CustomException.InvalidPasswordException.class)

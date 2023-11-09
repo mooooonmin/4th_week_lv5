@@ -1,4 +1,4 @@
-package com.level5.basket.global;
+package com.level5.basket.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

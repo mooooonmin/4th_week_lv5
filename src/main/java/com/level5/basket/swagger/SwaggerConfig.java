@@ -62,12 +62,21 @@ public class SwaggerConfig {
                                 )));
     }
 
-    // 로그인 수동 등록
+    // 회원가입, 로그인 관련 컨트롤러
     @Bean
     public GroupedOpenApi groupedOpenApi() {
         return GroupedOpenApi.builder()
                 .group("custom-auth")
                 .pathsToMatch("/api/users/**")
+                .build();
+    }
+
+    // 상품 관련 컨트롤러
+    @Bean
+    public GroupedOpenApi productApi() {
+        return GroupedOpenApi.builder()
+                .group("products")
+                .pathsToMatch("/api/product/**")
                 .build();
     }
 

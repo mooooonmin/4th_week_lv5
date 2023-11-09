@@ -1,7 +1,7 @@
 package com.level5.basket.jwt;
 
 import com.level5.basket.enumType.UserRoleEnum;
-import com.level5.basket.global.CustomException;
+import com.level5.basket.exception.CustomException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;

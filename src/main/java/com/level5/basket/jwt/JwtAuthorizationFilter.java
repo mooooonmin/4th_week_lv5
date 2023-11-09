@@ -1,6 +1,6 @@
 package com.level5.basket.jwt;
 
-import com.level5.basket.global.CustomException;
+import com.level5.basket.exception.CustomException;
 import com.level5.basket.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
