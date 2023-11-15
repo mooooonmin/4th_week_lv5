@@ -1,8 +1,8 @@
 package com.level5.basket.security.config;
 
-import com.level5.basket.jwt.JwtAuthenticationFilter;
-import com.level5.basket.jwt.JwtAuthorizationFilter;
-import com.level5.basket.jwt.JwtUtil;
+import com.level5.basket.security.jwt.JwtAuthenticationFilter;
+import com.level5.basket.security.jwt.JwtAuthorizationFilter;
+import com.level5.basket.security.jwt.JwtUtil;
 import com.level5.basket.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -65,6 +65,9 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-resources/**", "/webjars/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         // 회원가입, 로그인 경로 허용
                         .requestMatchers("/api/users/join", "/api/users/login").permitAll()
+                        // Get 메소드 허용처리
+                        .requestMatchers(HttpMethod.GET, "/api/carts/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/product/**").permitAll()
                         // 그 외 모든 요청 인증 처리
                         .anyRequest().authenticated());
 

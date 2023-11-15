@@ -1,4 +1,4 @@
-package com.level5.basket.jwt;
+package com.level5.basket.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.level5.basket.enumType.UserRoleEnum;
