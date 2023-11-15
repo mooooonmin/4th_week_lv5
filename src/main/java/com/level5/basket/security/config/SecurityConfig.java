@@ -5,6 +5,7 @@ import com.level5.basket.security.jwt.JwtAuthorizationFilter;
 import com.level5.basket.security.jwt.JwtUtil;
 import com.level5.basket.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,8 +26,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
 
+    @Autowired
     private final JwtUtil jwtUtil;
+    @Autowired
     private final UserDetailsServiceImpl userDetailsService;
+    @Autowired
     private final AuthenticationConfiguration authenticationConfiguration;
 
     @Bean
